@@ -6,6 +6,7 @@ const MySQlSVG = (props) => (
         viewBox="0 0 32 32"
         xmlns="http://www.w3.org/2000/svg"
         fill="#000000"
+        {...props}
     >
         <g id="SVGRepo_bgCarrier" strokeWidth={0} />
         <g

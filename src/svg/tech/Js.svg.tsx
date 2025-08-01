@@ -1,4 +1,4 @@
-const JsSVG = () => (
+const JsSVG = (props) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         aria-label="JavaScript"
@@ -7,6 +7,7 @@ const JsSVG = () => (
         width="64px"
         height="64px"
         fill="#000000"
+        {...props}
     >
         <g id="SVGRepo_bgCarrier" strokeWidth={0} />
         <g

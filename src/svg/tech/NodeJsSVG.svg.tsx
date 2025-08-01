@@ -5,6 +5,7 @@ const NodeJsSVG = (props) => (
         viewBox="-3.8 -1.5 40.921 40.921"
         xmlns="http://www.w3.org/2000/svg"
         fill="#000000"
+        {...props}
     >
         <g id="SVGRepo_bgCarrier" strokeWidth={0} />
         <g

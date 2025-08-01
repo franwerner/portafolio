@@ -1,4 +1,4 @@
-const NetlifySVG = () => (
+const NetlifySVG = (props) => (
     <svg
         width="64px"
         height="64px"
@@ -7,6 +7,7 @@ const NetlifySVG = () => (
         xmlnsXlink="http://www.w3.org/1999/xlink"
         preserveAspectRatio="xMidYMid"
         fill="#000000"
+        {...props}
     >
         <g id="SVGRepo_bgCarrier" strokeWidth={0} />
         <g

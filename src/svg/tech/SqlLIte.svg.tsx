@@ -1,4 +1,4 @@
-const Sqlite = () => (
+const Sqlite = (props) => (
     <svg
         width="64px"
         height="64px"
@@ -6,6 +6,7 @@ const Sqlite = () => (
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
         fill="#000000"
+        {...props}
     >
         <g id="SVGRepo_bgCarrier" strokeWidth={0} />
         <g

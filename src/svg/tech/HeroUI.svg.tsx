@@ -1,4 +1,3 @@
-import * as React from "react";
 const HeroUiSVG = (props) => (
     <svg
         fill="none"

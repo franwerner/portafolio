@@ -12,6 +12,7 @@ const SVGComponent = (props) => (
         stroke="#000"
         className="dark:stroke-white "
         strokeWidth={3.5}
+        {...props}
     >
         <g id="SVGRepo_iconCarrier">
             <g>

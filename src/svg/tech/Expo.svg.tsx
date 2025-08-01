@@ -4,6 +4,7 @@ const ExpoSVG = (props) => (
         width={64}
         height={64}
         viewBox="0 0 32 32"
+        {...props}
     >
         <path
             stroke="currentColor"

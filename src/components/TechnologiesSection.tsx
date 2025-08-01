@@ -24,9 +24,9 @@ const TechCard = ({
   name,
 }: Technology) => {
   return (
-    <div className="glass-effect p-4 rounded-xl group emerald-border hover:emerald-glow transform transition-transform duration-300 hover:-translate-y-1">
+    <div className="glass-effect p-2 py-4 hover:scale-105 scale:95 rounded-xl group emerald-border hover:emerald-glow transform transition-transform duration-300 hover:-translate-y-1">
       <div className="flex items-center justify-center mb-4">
-        <Icon />
+        <Icon width={58} height={58} />
       </div>
       <h3
         className="text-lg font-semibold text-center mb-2" >
@@ -42,9 +42,15 @@ const TechCard = ({
 export default function TechnologiesSection() {
   const { translate } = useLanguage()
 
+  const techSections = [
+    { title: translate.tech.language, techs: languagesTech },
+    { title: "Frontend", techs: frontendTech },
+    { title: "Backend", techs: backendTech },
+    { title: "DevOps", techs: devOpsTech },
+  ]
 
   return (
-    <section id="technologies" className="section-padding bg-muted/30">
+    <section id="technologies" className="section-padding  bg-muted/30">
       <div className="container-custom">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl p-2 font-bold gradient-text mb-2">
@@ -55,47 +61,19 @@ export default function TechnologiesSection() {
           </p>
         </div>
 
-        <div className="space-y-16">
-          <div>
-            <h3 className="text-2xl font-semibold text-center mb-8 text-primary">
-              {translate.tech.language}
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {languagesTech.map((tech, index) => (
-                <TechCard key={index} {...tech} />
-              ))}
+        <div className="space-y-16 max-w-4xl mx-auto">
+          {techSections.map(({ title, techs }, index) => (
+            <div key={index}>
+              <h3 className="text-3xl font-semibold text-center mb-8 text-primary">
+                {title}
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {techs.map((tech, i) => (
+                  <TechCard key={i} {...tech} />
+                ))}
+              </div>
             </div>
-          </div>
-          <div>
-            <h3 className="text-2xl font-semibold text-center mb-8 text-primary">
-              Frontend
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {frontendTech.map((tech, index) => (
-                <TechCard key={index} {...tech} />
-              ))}
-            </div>
-          </div>
-          <div>
-            <h3 className="text-2xl font-semibold text-center mb-8 text-primary">
-              Backend
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {backendTech.map((tech, index) => (
-                <TechCard key={index} {...tech} />
-              ))}
-            </div>
-          </div>
-          <div>
-            <h3 className="text-2xl font-semibold text-center mb-8 text-primary">
-              DevOps
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {devOpsTech.map((tech, index) => (
-                <TechCard key={index} {...tech} />
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

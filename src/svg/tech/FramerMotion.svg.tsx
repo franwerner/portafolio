@@ -1,4 +1,3 @@
-import * as React from "react";
 const FramerMotionSVG = (props) => (
     <svg
         height={64}

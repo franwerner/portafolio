@@ -1,9 +1,10 @@
-const JwtSVG = () => (
+const JwtSVG = (props) => (
     <svg
         height={64}
         viewBox=".4 .3 99.7 100"
         width={64}
         xmlns="http://www.w3.org/2000/svg"
+        {...props}
     >
         <g fill="none" fillRule="evenodd">
             <path

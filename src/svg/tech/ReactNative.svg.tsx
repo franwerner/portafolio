@@ -5,6 +5,7 @@ const ReactNativeSVG = (props) => (
         viewBox="-3.2 -3.2 38.40 38.40"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        {...props}
     >
         <g
             id="SVGRepo_bgCarrier"
