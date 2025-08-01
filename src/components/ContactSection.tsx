@@ -38,8 +38,7 @@ const useForm = () => {
         return translate.validation.email;
       }
     }
-
-    if (name === 'message' == trimmed.length < 10) {
+    if (name === 'message' && trimmed.length < 10) {
       return translate.validation.minLength.replace('{min}', '10');
     }
 
@@ -213,7 +212,6 @@ export default function ContactSection() {
                   value={formData.message}
                   onChange={handleInputChange}
                   rows={5}
-
                   maxLength={300}
                   className={clsx(
                     "w-full pl-10 resize-none pr-4 py-3 pb-7 bg-background border rounded-lg focus:outline-none focus:ring-2",

@@ -1,3 +1,4 @@
+import links from '@/constant/links.constants';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Download, Github, Linkedin, Mail } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -29,7 +30,7 @@ const TypingEffect = () => {
   }, [])
 
   return (
-    <h1 className="text-5xl  lg:text-7xl font-bold gradient-text">
+    <h1 className="text-5xl select-none  lg:text-7xl font-bold gradient-text">
       {displayedText}
     </h1>
   );
@@ -83,7 +84,7 @@ export default function HeroSection() {
 
             <div className="flex justify-center lg:justify-start gap-4 pt-8 animate-fade-in-up">
               <a
-                href="https://github.com"
+                href={links.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 rounded-lg border hover:bg-muted transition-colors duration-300 hover-lift"
@@ -92,7 +93,7 @@ export default function HeroSection() {
                 <Github className="w-6 h-6" />
               </a>
               <a
-                href="https://linkedin.com"
+                href={links.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 rounded-lg border hover:bg-muted transition-colors duration-300 hover-lift"

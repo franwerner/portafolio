@@ -150,7 +150,7 @@ const backendTech: Technologies = [
         level: 4
     },
     {
-        name: "SqlLite",
+        name: "SQL Lite",
         Icon: Sqlite,
         level: 3
     },

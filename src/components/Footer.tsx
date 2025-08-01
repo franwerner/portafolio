@@ -1,5 +1,6 @@
+import links from '@/constant/links.constants';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Github, Globe, Linkedin, Mail, Twitter } from 'lucide-react';
+import { Github, Globe, Instagram, Linkedin, Mail, Twitter } from 'lucide-react';
 import React from 'react';
 
 export default function Footer() {
@@ -8,22 +9,22 @@ export default function Footer() {
   const socialLinks = [
     {
       name: 'GitHub',
-      url: 'https://github.com',
+      url: links.github,
       icon: <Github className="w-5 h-5" />,
     },
     {
       name: 'LinkedIn',
-      url: 'https://linkedin.com',
+      url: links.linkedin,
       icon: <Linkedin className="w-5 h-5" />,
     },
     {
-      name: 'Twitter',
-      url: 'https://twitter.com',
-      icon: <Twitter className="w-5 h-5" />,
+      name: 'Instagram',
+      url: links.instagram,
+      icon: <Instagram className="w-5 h-5" />,
     },
     {
       name: 'Email',
-      url: 'mailto:contact@frankowerner.dev',
+      url: `mailto:${links.gmail}`,
       icon: <Mail className="w-5 h-5" />,
     },
   ];

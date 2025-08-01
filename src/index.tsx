@@ -6,6 +6,7 @@ import Navigation from '@/components/Navigation';
 import ProjectsSection from '@/components/ProjectsSection';
 import ScrollToTopRocket from '@/components/ScrollToTopRocket';
 import TechnologiesSection from '@/components/TechnologiesSection';
+import { useEffect } from 'react';
 
 export default function Index() {
 
@@ -16,9 +17,9 @@ export default function Index() {
 
   return (
     <div className="relative min-h-screen">
+      <AnimatedBackground />
       <Navigation />
       <main className="relative z-10">
-        <AnimatedBackground />
         <HeroSection />
         <TechnologiesSection />
         <ProjectsSection />
