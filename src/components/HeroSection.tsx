@@ -16,8 +16,7 @@ const TypingEffect = () => {
           reverse = nextText.length > 1;
           return nextText;
         } else {
-          const nextChar = text.charAt(prev.length);
-          const nextText = prev + nextChar;
+          const nextText = prev + text.charAt(prev.length)
 
           reverse = nextText.length === text.length
 
@@ -43,10 +42,7 @@ export default function HeroSection() {
     console.log('Downloading CV...');
   };
   const scrollToContact = () => {
-    const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    window.location.href = "#contact"
   };
   return (
     <section id="about" className="min-h-screen flex items-center justify-center section-padding relative overflow-hidden">
