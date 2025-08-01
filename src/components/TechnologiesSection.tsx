@@ -15,8 +15,8 @@ const StarRating = ({ level }: { level: number }) => {
         <Star
           key={star}
           className={`w-4 h-4 ${star <= level
-              ? 'text-yellow-400 fill-yellow-400'
-              : 'text-muted-foreground'
+            ? 'text-yellow-400 fill-yellow-400'
+            : 'text-muted-foreground'
             }`}
         />
       ))}
@@ -164,7 +164,7 @@ export default function TechnologiesSection() {
     <section id="technologies" className="section-padding bg-muted/30">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold gradient-text mb-4">
+          <h2 className="text-4xl lg:text-5xl p-2 font-bold gradient-text mb-2">
             {translate.tech.title}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">

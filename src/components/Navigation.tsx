@@ -5,7 +5,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import clsx from "clsx";
 
 const NAV_ITEMS = [
-  { key: "home", id: "about" },
+  { key: "home", id: "home" },
   { key: "technologies", id: "technologies" },
   { key: "projects", id: "projects" },
   { key: "contact", id: "contact" },

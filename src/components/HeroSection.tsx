@@ -38,15 +38,14 @@ const TypingEffect = () => {
 export default function HeroSection() {
   const { translate } = useLanguage();
 
-  console.log("RENDER")
   const handleDownloadCV = () => {
     console.log('Downloading CV...');
   };
-  const scrollToContact = () => {
-    window.location.href = "#contact"
-  };
+
+  const scrollToContact = () => window.location.href = "#contact"
+
   return (
-    <section id="about" className="min-h-screen flex items-center justify-center section-padding relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center justify-center section-padding relative overflow-hidden">
       <div className="container-custom">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           <div className="flex-1 text-center lg:text-left space-y-8">

@@ -194,7 +194,7 @@ export default function ProjectsSection() {
     <section id="projects" className="section-padding py-16 md:py-24 lg:py-32">
       <div className="container-custom">
         <div className="text-center mb-20">
-          <h2 className="text-4xl lg:text-5xl font-bold gradient-text mb-6">
+          <h2 className="text-4xl lg:text-5xl p-2 font-bold gradient-text mb-2">
             {translate.projects.title}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">

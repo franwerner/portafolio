@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Mail, User, MessageSquare, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import clsx from 'clsx';
@@ -15,35 +15,49 @@ interface FormErrors {
   message?: string;
 }
 
-export default function ContactSection() {
-  const { translate } = useLanguage()
+const useForm = () => {
+  const { translate } = useLanguage();
+
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     message: '',
   });
+
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
+  const validateField = (name: keyof FormData, value: string): string | undefined => {
+    const trimmed = value.trim();
+
+    if (!trimmed) return translate.validation.required;
+
+    if (name === 'email') {
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
+        return translate.validation.email;
+      }
+    }
+
+    if (name === 'message') {
+      if (trimmed.length < 10) {
+        return translate.validation.minLength.replace('{min}', '10');
+      }
+      if (trimmed.length > 300) {
+        return translate.validation.maxLength.replace('{max}', '300');
+      }
+    }
+
+    return undefined;
+  };
+
   const validateForm = (): boolean => {
-    const newErrors: FormErrors = {};
+    const newErrors: FormErrors = {} as FormErrors;
 
-    if (!formData.name.trim()) {
-      newErrors.name = translate.validation.required;
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = translate.validation.required;
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = translate.validation.email;
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = translate.validation.required;
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = translate.validation.minLength.replace('{min}', '10');
-    }
+    (Object.keys(formData) as (keyof FormData)[]).forEach((key) => {
+      const error = validateField(key, formData[key]);
+      if (error) newErrors[key] = error;
+    });
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -51,26 +65,24 @@ export default function ContactSection() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+    const fieldName = name as keyof FormData;
+
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [fieldName]: value,
     }));
 
-    // Clear error when user starts typing
-    if (errors[name as keyof FormErrors]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: undefined
-      }));
-    }
+    const error = validateField(fieldName, value);
+    setErrors(prev => ({
+      ...prev,
+      [fieldName]: error,
+    }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!validateForm()) {
-      return;
-    }
+    if (!validateForm()) return;
 
     setIsSubmitting(true);
     setSubmitStatus('idle');
@@ -80,9 +92,9 @@ export default function ContactSection() {
       await new Promise(resolve => setTimeout(resolve, 2000));
 
       console.log('Form submitted:', formData);
-
       setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '' });
+      setErrors({});
     } catch (error) {
       setSubmitStatus('error');
     } finally {
@@ -90,11 +102,42 @@ export default function ContactSection() {
     }
   };
 
+  useEffect(() => {
+    // Solo volver a validar si cambia el idioma (por ejemplo, si cambian los mensajes)
+    if (Object.keys(errors).length > 0) {
+      validateForm();
+    }
+  }, [translate]);
+
+  return {
+    handleInputChange,
+    handleSubmit,
+    errors,
+    formData,
+    isSubmitting,
+    submitStatus,
+  };
+};
+
+export default function ContactSection() {
+  const { translate } = useLanguage()
+
+  const {
+    errors,
+    formData,
+    handleInputChange,
+    handleSubmit,
+    isSubmitting,
+    submitStatus
+  } = useForm()
+
+
+
   return (
     <section id="contact" className="section-padding bg-muted/30">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold gradient-text mb-4">
+          <h2 className="text-4xl lg:text-5xl font-bold gradient-text p-2 mb-2">
             {translate.contact.title}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -148,8 +191,8 @@ export default function ContactSection() {
                   className={clsx(
                     "w-full pl-10 pr-4 py-3 bg-background border rounded-lg focus:outline-none focus:ring-2",
                     " transition-colors border-border ",
-                    errors.name && "border-destructive focus:ring-destructive",
-                    !errors.name && "focus:ring-emerald-400 hover:border-emerald-500"
+                    errors.email && "border-destructive focus:ring-destructive",
+                    !errors.email && "focus:ring-emerald-400 hover:border-emerald-500"
                   )}
                   placeholder={translate.contact.email}
                 />
@@ -174,14 +217,18 @@ export default function ContactSection() {
                   value={formData.message}
                   onChange={handleInputChange}
                   rows={5}
+                  maxLength={300}
                   className={clsx(
                     "w-full pl-10 pr-4 py-3 bg-background border rounded-lg focus:outline-none focus:ring-2",
-                    " transition-colors border-border ",
-                    errors.name && "border-destructive focus:ring-destructive",
-                    !errors.name && "focus:ring-emerald-400 hover:border-emerald-500"
+                    "transition-colors border-border",
+                    errors.message && "border-destructive focus:ring-destructive",
+                    !errors.message && "focus:ring-emerald-400 hover:border-emerald-500"
                   )}
                   placeholder={translate.contact.message}
                 />
+                <div className="absolute bottom-2 right-3 text-xs text-muted-foreground">
+                  {formData.message.trim().length}/300
+                </div>
               </div>
               {errors.message && (
                 <p className="mt-2 text-sm text-destructive flex items-center gap-1">

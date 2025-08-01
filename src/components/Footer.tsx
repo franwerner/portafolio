@@ -83,7 +83,7 @@ export default function Footer() {
               <h4 className="text-lg font-semibold">{translate.footer["links"]}</h4>
               <div className="space-y-2">
                 {[
-                  { key: 'about', id: 'about' },
+                  { key: 'home', id: 'home' },
                   { key: 'technologies', id: 'technologies' },
                   { key: 'projects', id: 'projects' },
                   { key: 'contact', id: 'contact' },
@@ -91,10 +91,7 @@ export default function Footer() {
                   <button
                     key={item.id}
                     onClick={() => {
-                      const element = document.getElementById(item.id);
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' });
-                      }
+                      window.location.href = `#${item.key}`
                     }}
                     className="block text-muted-foreground hover:text-primary transition-colors duration-200"
                   >
@@ -107,14 +104,14 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-border py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-2 text-muted-foreground">
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
+            <div className="flex flex-wrap items-center gap-2 text-muted-foreground">
               <span>© 2025 {translate.hero.name}.</span>
               <span>{translate.footer.rights}</span>
             </div>
-            <div className="flex items-center gap-2 text-muted-foreground">
+            <div className="flex flex-wrap items-center gap-2 text-muted-foreground">
               <span>{translate.footer.built}</span>
-              <div className="flex items-center gap-2 ml-2">
+              <div className="flex items-center gap-2 ">
                 {techStack.map((tech, index) => (
                   <React.Fragment key={tech}>
                     <span className="text-primary font-medium">{tech}</span>

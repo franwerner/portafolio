@@ -51,6 +51,7 @@ const translations = {
             required: 'Este campo es requerido',
             email: 'Email inválido',
             minLength: 'Mínimo {min} caracteres',
+            maxLength: "Debe tener como máximo {max} caracteres",
         },
     },
     en: {
@@ -104,6 +105,7 @@ const translations = {
             required: 'This field is required',
             email: 'Invalid email',
             minLength: 'Minimum {min} characters',
+            maxLength: "Maximum {max} characters",
         },
     },
 };
