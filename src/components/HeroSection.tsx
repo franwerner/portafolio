@@ -1,5 +1,40 @@
-import { Download, Mail, Github, Linkedin } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Download, Github, Linkedin, Mail } from 'lucide-react';
+import { useEffect, useState } from 'react';
+
+const TypingEffect = () => {
+  const { translate } = useLanguage()
+  const text = translate.hero.name;
+  const [displayedText, setDisplayedText] = useState(text.charAt(0));
+
+  useEffect(() => {
+    let reverse = false
+    const timer = setInterval(() => {
+      setDisplayedText(prev => {
+        if (reverse) {
+          const nextText = prev.slice(0, -1);
+          reverse = nextText.length > 1;
+          return nextText;
+        } else {
+          const nextChar = text.charAt(prev.length);
+          const nextText = prev + nextChar;
+
+          reverse = nextText.length === text.length
+
+          return nextText;
+        }
+      })
+    }, 150);
+
+    return () => clearInterval(timer)
+  }, [])
+
+  return (
+    <h1 className="text-5xl  lg:text-7xl font-bold gradient-text">
+      {displayedText}
+    </h1>
+  );
+};
 
 export default function HeroSection() {
   const { translate } = useLanguage();
@@ -7,27 +42,22 @@ export default function HeroSection() {
   const handleDownloadCV = () => {
     console.log('Downloading CV...');
   };
-
   const scrollToContact = () => {
     const element = document.getElementById('contact');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
   return (
     <section id="about" className="min-h-screen flex items-center justify-center section-padding relative overflow-hidden">
       <div className="container-custom">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-          {/* Text Content */}
           <div className="flex-1 text-center lg:text-left space-y-8">
             <div className="space-y-4">
               <p className="text-lg text-muted-foreground animate-fade-in-up">
                 {translate.hero.greeting}
               </p>
-              <h1 className="text-5xl lg:text-7xl font-bold gradient-text animate-fade-in-up">
-                {translate.hero.name}
-              </h1>
+              <TypingEffect />
               <h2 className="text-2xl lg:text-3xl font-semibold text-foreground animate-fade-in-up">
                 {translate.hero.title}
               </h2>
@@ -37,7 +67,6 @@ export default function HeroSection() {
               {translate.hero.description}
             </p>
 
-            {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-up">
               <button
                 onClick={handleDownloadCV}
@@ -56,7 +85,6 @@ export default function HeroSection() {
               </button>
             </div>
 
-            {/* Social Links */}
             <div className="flex justify-center lg:justify-start gap-4 pt-8 animate-fade-in-up">
               <a
                 href="https://github.com"
@@ -78,29 +106,15 @@ export default function HeroSection() {
               </a>
             </div>
           </div>
-
-          {/* Avatar/Image */}
-          <div className="flex-shrink-0 animate-fade-in-up">
-            <div className="relative">
-              <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-primary/20 to-emerald-400/20 flex items-center justify-center animate-float">
-                <div className="w-72 h-72 lg:w-88 lg:h-88 rounded-full bg-gradient-to-br from-primary to-emerald-400 flex items-center justify-center">
-                  <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-full bg-background flex items-center justify-center">
-                    {/* Avatar placeholder - in a real app, this would be an image */}
-                    <div className="w-56 h-56 lg:w-72 lg:h-72 rounded-full bg-gradient-to-br from-primary/30 to-emerald-400/30 flex items-center justify-center">
-                      <span className="text-4xl lg:text-6xl font-bold text-primary">FW</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating elements */}
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary rounded-full animate-pulse-dot emerald-glow"></div>
-              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-emerald-400 rounded-full animate-pulse-dot emerald-glow"></div>
-              <div className="absolute top-1/2 -left-8 w-4 h-4 bg-emerald-300 rounded-full animate-pulse-dot emerald-glow"></div>
-              <div className="absolute top-1/4 -right-12 w-3 h-3 bg-green-400 rounded-full animate-pulse-dot"></div>
-              <div className="absolute bottom-1/3 -left-6 w-2 h-2 bg-emerald-500 rounded-full animate-pulse-dot"></div>
-            </div>
+          <div className="relative mx-auto max-w-[24rem] aspect-square">
+            <div className="w-full h-full rounded-full p-20 bg-gradient-to-br from-emerald-300/70 to-emerald-500/70 flex items-center justify-center shadow-lg" />
+            <div className="absolute -top-5 -right-5 w-8 h-8 bg-emerald-500 rounded-full" />
+            <div className="absolute -bottom-5 -left-5 w-6 h-6 bg-emerald-300 rounded-full" />
+            <div className="absolute top-1/2 -left-8 w-4 h-4 bg-emerald-400 rounded-full" />
+            <div className="absolute top-1/4 -right-12 w-3 h-3 bg-emerald-600 rounded-full" />
+            <div className="absolute bottom-1/3 -left-6 w-2 h-2 bg-emerald-700 rounded-full" />
           </div>
+
         </div>
       </div>
     </section>

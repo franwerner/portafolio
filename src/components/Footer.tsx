@@ -112,7 +112,6 @@ export default function Footer() {
               <span>© 2025 {translate.hero.name}.</span>
               <span>{translate.footer.rights}</span>
             </div>
-
             <div className="flex items-center gap-2 text-muted-foreground">
               <span>{translate.footer.built}</span>
               <div className="flex items-center gap-2 ml-2">

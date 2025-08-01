@@ -1,7 +1,7 @@
 const translations = {
     es: {
         nav: {
-            about: 'Acerca de',
+            home: 'Incio',
             technologies: 'Tecnologías',
             projects: 'Proyectos',
             contact: 'Contacto',
@@ -52,7 +52,7 @@ const translations = {
     },
     en: {
         nav: {
-            about: 'About',
+            home: 'Home',
             technologies: 'Technologies',
             projects: 'Projects',
             contact: 'Contact',

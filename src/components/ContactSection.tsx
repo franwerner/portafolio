@@ -78,7 +78,6 @@ export default function ContactSection() {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
 
-      // In a real app, you would send the form data to your backend
       console.log('Form submitted:', formData);
 
       setSubmitStatus('success');
@@ -104,7 +103,6 @@ export default function ContactSection() {
 
         <div className="max-w-2xl mx-auto">
           <form onSubmit={handleSubmit} className="glass-effect p-8 rounded-2xl space-y-6 emerald-border emerald-glow">
-            {/* Name Field */}
             <div>
               <label htmlFor="name" className="block text-sm font-medium mb-2">
                 {translate.contact.name}
@@ -130,7 +128,6 @@ export default function ContactSection() {
               )}
             </div>
 
-            {/* Email Field */}
             <div>
               <label htmlFor="email" className="block text-sm font-medium mb-2">
                 {translate.contact.email}
@@ -156,7 +153,6 @@ export default function ContactSection() {
               )}
             </div>
 
-            {/* Message Field */}
             <div>
               <label htmlFor="message" className="block text-sm font-medium mb-2">
                 {translate.contact.message}
@@ -182,7 +178,6 @@ export default function ContactSection() {
               )}
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
               disabled={isSubmitting}
@@ -201,7 +196,6 @@ export default function ContactSection() {
               )}
             </button>
 
-            {/* Success/Error Messages */}
             {submitStatus === 'success' && (
               <div className="flex items-center gap-2 p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-emerald-600">
                 <CheckCircle className="w-5 h-5" />
