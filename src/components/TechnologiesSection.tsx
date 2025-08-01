@@ -1,4 +1,3 @@
-import React from 'react';
 import { Star } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { backendTech, devOpsTech, frontendTech, languagesTech, Technology } from '@/constant/tecnologies.constant';
@@ -41,7 +40,7 @@ const TechCard = ({
 };
 
 export default function TechnologiesSection() {
-  const { translate } = useLanguage();
+  const { translate } = useLanguage()
 
 
   return (
