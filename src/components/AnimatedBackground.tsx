@@ -27,7 +27,7 @@ export default function ParticlesBackground() {
         },
         particles: {
           number: {
-            value: 80,
+            value: 60,
             density: {
               enable: true,
             },
