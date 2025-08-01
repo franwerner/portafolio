@@ -21,6 +21,7 @@ export default function ParticlesBackground() {
     <Particles
       id="tsparticles"
 
+      className="absolute  w-full h-full "
       options={{
         fullScreen: {
           enable: true,
@@ -28,7 +29,7 @@ export default function ParticlesBackground() {
         },
         particles: {
           number: {
-            value: 70,
+            value: 40,
             density: {
               enable: true,
             },
@@ -87,14 +88,8 @@ export default function ParticlesBackground() {
               maxSpeed: 2,
               easing: "ease-out-quad",
             },
-            parallax: {
-              enable: true,
-              force: 60,       // Cuánto se mueven
-              smooth: 10,      // Suavidad del movimiento
-            },
           },
         },
-        detectRetina: true,
       }}
     />
   );
