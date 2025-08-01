@@ -205,10 +205,10 @@ export default function ProjectsSection() {
         <div
           onMouseEnter={() => setStop(true)}
           onMouseLeave={() => setStop(false)}
-          className="relative h-[450px] mb-16">
+          className="relative mb-16">
           <div
             className={clsx(
-              "glass-effect rounded-2xl border-3 border-emerald-200 overflow-hidden hover-lift transition-all duration-300",
+              "glass-effect rounded-2xl  border-3 border-emerald-200 overflow-hidden hover-lift transition-all duration-300",
               isAnimating ? "scale-[0.98] opacity-80" : "scale-100 opacity-100"
             )}
           >
@@ -253,7 +253,7 @@ export default function ProjectsSection() {
           </button>
         </div>
 
-        <div className="w-full  whitespace-nowrap overflow-hidden bg-muted/50 shadow-lg border p-4 rounded-lg">
+        <div className="w-full relative  whitespace-nowrap overflow-hidden bg-muted/50 shadow-lg border p-4 rounded-lg">
           <div className="animate-infinite-scroll  inline-flex ">
             {projects.map((project, index) => (
               <ProjectPreviewButton
