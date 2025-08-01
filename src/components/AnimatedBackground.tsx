@@ -24,7 +24,7 @@ export default function ParticlesBackground() {
       className="absolute  w-full h-full "
       options={{
         fullScreen: {
-          enable: true,
+          enable: false,
           zIndex: -10,
         },
         particles: {
