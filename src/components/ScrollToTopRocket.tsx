@@ -35,7 +35,7 @@ export default function ScrollToTopRocket() {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-8 right-8 z-50 group p-3 bg-gradient-to-b from-primary to-emerald-600 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 emerald-glow ${isAnimating ? 'animate-bounce' : ''
+      className={`fixed bottom-14 right-8 z-50 group p-3 bg-gradient-to-b from-primary to-emerald-600 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 emerald-glow ${isAnimating ? 'animate-bounce' : ''
         }`}
       title="Volver arriba"
     >

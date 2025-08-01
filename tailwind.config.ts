@@ -58,65 +58,14 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
       },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
       keyframes: {
-        "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
-        },
-        "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
-        },
-        "marquee": {
-          "0%": { transform: "translateX(0%)" },
-          "100%": { transform: "translateX(-50%)" },
-        },
-        "spin-slow": {
-          "0%": { transform: "rotate(0deg)" },
-          "100%": { transform: "rotate(360deg)" },
-        },
-        "spin-reverse": {
-          "0%": { transform: "rotate(360deg)" },
-          "100%": { transform: "rotate(0deg)" },
-        },
-        "spin-3d": {
-          "0%": {
-            transform: "rotateY(0deg) rotateX(10deg)"
-          },
-          "25%": {
-            transform: "rotateY(90deg) rotateX(15deg)"
-          },
-          "50%": {
-            transform: "rotateY(180deg) rotateX(10deg)"
-          },
-          "75%": {
-            transform: "rotateY(270deg) rotateX(5deg)"
-          },
-          "100%": {
-            transform: "rotateY(360deg) rotateX(10deg)"
-          },
-        },
+        'infinite-scroll': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-100%)' },
+        }
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        "marquee": "marquee 30s linear infinite",
-        "spin-slow": "spin-slow 8s linear infinite",
-        "spin-reverse": "spin-reverse 12s linear infinite",
-        "spin-3d": "spin-3d 10s ease-in-out infinite",
+        'infinite-scroll': 'infinite-scroll 25s linear infinite',
       },
     },
   },

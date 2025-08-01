@@ -86,7 +86,7 @@ export default function HeroSection() {
                 href="https://github.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-lg hover:bg-muted transition-colors duration-300 hover-lift"
+                className="p-3 rounded-lg border hover:bg-muted transition-colors duration-300 hover-lift"
                 title="GitHub"
               >
                 <Github className="w-6 h-6" />
@@ -95,7 +95,7 @@ export default function HeroSection() {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-lg hover:bg-muted transition-colors duration-300 hover-lift"
+                className="p-3 rounded-lg border hover:bg-muted transition-colors duration-300 hover-lift"
                 title="LinkedIn"
               >
                 <Linkedin className="w-6 h-6" />

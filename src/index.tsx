@@ -6,8 +6,14 @@ import Navigation from '@/components/Navigation';
 import ProjectsSection from '@/components/ProjectsSection';
 import ScrollToTopRocket from '@/components/ScrollToTopRocket';
 import TechnologiesSection from '@/components/TechnologiesSection';
+import { useEffect } from 'react';
 
 export default function Index() {
+
+
+  // useEffect(() => {
+  //   window.location.href = "#about"
+  // }, []);
 
   return (
     <div className="relative min-h-screen">
