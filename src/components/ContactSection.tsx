@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, User, MessageSquare, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import clsx from 'clsx';
 
 interface FormData {
   name: string;
@@ -102,7 +103,7 @@ export default function ContactSection() {
         </div>
 
         <div className="max-w-2xl mx-auto">
-          <form onSubmit={handleSubmit} className="glass-effect p-8 rounded-2xl space-y-6 emerald-border emerald-glow">
+          <form onSubmit={handleSubmit} className="glass-effect border-2 border-muted p-8 rounded-2xl space-y-6">
             <div>
               <label htmlFor="name" className="block text-sm font-medium mb-2">
                 {translate.contact.name}
@@ -115,8 +116,12 @@ export default function ContactSection() {
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className={`w-full pl-10 pr-4 py-3 bg-background border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors ${errors.name ? 'border-destructive' : 'border-border hover:border-primary/50'
-                    }`}
+                  className={clsx(
+                    "w-full pl-10 pr-4 py-3 bg-background border rounded-lg focus:outline-none focus:ring-2",
+                    " transition-colors border-border ",
+                    errors.name && "border-destructive focus:ring-destructive",
+                    !errors.name && "focus:ring-emerald-400 hover:border-emerald-500"
+                  )}
                   placeholder={translate.contact.name}
                 />
               </div>
@@ -135,13 +140,17 @@ export default function ContactSection() {
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                 <input
-                  type="email"
+                  type="text"
                   id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className={`w-full pl-10 pr-4 py-3 bg-background border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors ${errors.email ? 'border-destructive' : 'border-border hover:border-primary/50'
-                    }`}
+                  className={clsx(
+                    "w-full pl-10 pr-4 py-3 bg-background border rounded-lg focus:outline-none focus:ring-2",
+                    " transition-colors border-border ",
+                    errors.name && "border-destructive focus:ring-destructive",
+                    !errors.name && "focus:ring-emerald-400 hover:border-emerald-500"
+                  )}
                   placeholder={translate.contact.email}
                 />
               </div>
@@ -165,8 +174,12 @@ export default function ContactSection() {
                   value={formData.message}
                   onChange={handleInputChange}
                   rows={5}
-                  className={`w-full pl-10 pr-4 py-3 bg-background border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors resize-vertical ${errors.message ? 'border-destructive' : 'border-border hover:border-primary/50'
-                    }`}
+                  className={clsx(
+                    "w-full pl-10 pr-4 py-3 bg-background border rounded-lg focus:outline-none focus:ring-2",
+                    " transition-colors border-border ",
+                    errors.name && "border-destructive focus:ring-destructive",
+                    !errors.name && "focus:ring-emerald-400 hover:border-emerald-500"
+                  )}
                   placeholder={translate.contact.message}
                 />
               </div>

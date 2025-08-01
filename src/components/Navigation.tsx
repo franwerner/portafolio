@@ -33,7 +33,7 @@ const NavLinks = memo(({
     <li
       key={item.id}
       onClick={() => scrollToSection(item.id)}
-      className={`${className} text-foreground hover:text-primary transition-colors duration-200 font-medium`}
+      className={`${className} relative border-b-2 border-transparent hover:border-emerald-400 cursor-pointer text-foreground hover:text-emerald-500 transition duration-300 font-semibold px-3 py-1 before:absolute before:left-0 before:bottom-0 before:h-0.5 before:w-0 before:bg-emerald-400 before:transition-all before:duration-300 hover:before:w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2`}
     >
       {translate.nav[item.key]}
     </li>

@@ -208,7 +208,7 @@ export default function ProjectsSection() {
           className="relative mb-16">
           <div
             className={clsx(
-              "glass-effect rounded-2xl  border-3 border-emerald-200 overflow-hidden hover-lift transition-all duration-300",
+              "glass-effect hover:border-emerald-200 border-2  rounded-2xl   overflow-hidden hover-lift transition-all duration-300",
               isAnimating ? "scale-[0.98] opacity-80" : "scale-100 opacity-100"
             )}
           >

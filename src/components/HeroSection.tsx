@@ -38,6 +38,7 @@ const TypingEffect = () => {
 export default function HeroSection() {
   const { translate } = useLanguage();
 
+  console.log("RENDER")
   const handleDownloadCV = () => {
     console.log('Downloading CV...');
   };
@@ -50,7 +51,7 @@ export default function HeroSection() {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           <div className="flex-1 text-center lg:text-left space-y-8">
             <div className="space-y-4">
-              <p className="text-lg text-muted-foreground animate-fade-in-up">
+              <p className="text-xl text-muted-foreground animate-fade-in-up">
                 {translate.hero.greeting}
               </p>
               <TypingEffect />

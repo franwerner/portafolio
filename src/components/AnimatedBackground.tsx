@@ -46,9 +46,9 @@ interface AbstractLine {
 // Simple Delaunay triangulation implementation
 function delaunayTriangulation(points: Point[]): Triangle[] {
   if (points.length < 3) return [];
-  
+
   const triangles: Triangle[] = [];
-  
+
   // Create a simple triangulation by connecting nearby points
   for (let i = 0; i < points.length; i++) {
     for (let j = i + 1; j < points.length; j++) {
@@ -56,16 +56,16 @@ function delaunayTriangulation(points: Point[]): Triangle[] {
         const p1 = points[i];
         const p2 = points[j];
         const p3 = points[k];
-        
+
         // Only create triangles within the same section and reasonable distance
         if (p1.section === p2.section && p2.section === p3.section) {
           const dist1 = Math.sqrt((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2);
           const dist2 = Math.sqrt((p2.x - p3.x) ** 2 + (p2.y - p3.y) ** 2);
           const dist3 = Math.sqrt((p3.x - p1.x) ** 2 + (p3.y - p1.y) ** 2);
-          
+
           // Only create triangles with reasonable side lengths
-          if (dist1 < 200 && dist2 < 200 && dist3 < 200 && 
-              dist1 > 50 && dist2 > 50 && dist3 > 50) {
+          if (dist1 < 200 && dist2 < 200 && dist3 < 200 &&
+            dist1 > 50 && dist2 > 50 && dist3 > 50) {
             triangles.push({
               p1, p2, p3,
               opacity: Math.random() * 0.1 + 0.05
@@ -75,7 +75,7 @@ function delaunayTriangulation(points: Point[]): Triangle[] {
       }
     }
   }
-  
+
   return triangles;
 }
 
@@ -167,7 +167,7 @@ export default function AnimatedBackground() {
       for (let section = 0; section < sections; section++) {
         const sectionHeight = canvas.height / sections;
         const sectionY = section * sectionHeight;
-        
+
         // Create points for this section
         for (let i = 0; i < pointsPerSection; i++) {
           pointsRef.current.push({
@@ -195,7 +195,7 @@ export default function AnimatedBackground() {
         const sectionHeight = canvas.height / 5;
         const sectionY = point.section * sectionHeight;
         const sectionBottom = sectionY + sectionHeight;
-        
+
         // Update position
         point.x += point.vx;
         point.y += point.vy;
@@ -231,18 +231,18 @@ export default function AnimatedBackground() {
         ctx.lineTo(triangle.p2.x, triangle.p2.y);
         ctx.lineTo(triangle.p3.x, triangle.p3.y);
         ctx.closePath();
-        
+
         // Fill with emerald color
         ctx.fillStyle = color;
         ctx.globalAlpha = triangle.opacity;
         ctx.fill();
-        
+
         // Optional: stroke for better visibility
         ctx.strokeStyle = color;
         ctx.globalAlpha = triangle.opacity * 0.5;
         ctx.lineWidth = 0.5;
         ctx.stroke();
-        
+
         ctx.globalAlpha = 1;
       });
 
@@ -432,7 +432,7 @@ export default function AnimatedBackground() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 w-full h-full pointer-events-none z-0"
-      style={{ 
+      style={{
         opacity: 0.4,
         position: 'absolute',
         top: 0,

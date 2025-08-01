@@ -45,7 +45,7 @@ export default function Footer() {
                 {translate.hero.name}
               </h3>
               <p className="text-muted-foreground">
-                {translate.hero.title} - {translate.hero.description.substring(0, 100)}...
+                {translate.hero.title} - {translate.hero.description}
               </p>
 
               <button
@@ -60,7 +60,7 @@ export default function Footer() {
             </div>
 
             <div className="space-y-4">
-              <h4 className="text-lg font-semibold">Connect</h4>
+              <h4 className="text-lg font-semibold">{translate.footer["contact"]}</h4>
               <div className="flex flex-wrap gap-4">
                 {socialLinks.map((link) => (
                   <a
@@ -80,7 +80,7 @@ export default function Footer() {
             </div>
 
             <div className="space-y-4">
-              <h4 className="text-lg font-semibold">Quick Links</h4>
+              <h4 className="text-lg font-semibold">{translate.footer["links"]}</h4>
               <div className="space-y-2">
                 {[
                   { key: 'about', id: 'about' },

@@ -43,6 +43,9 @@ const translations = {
         footer: {
             rights: 'Todos los derechos reservados',
             built: 'Construido con',
+            contact: "Contactos",
+            links: "Lista rapida"
+
         },
         validation: {
             required: 'Este campo es requerido',
@@ -94,6 +97,8 @@ const translations = {
         footer: {
             rights: 'All rights reserved',
             built: 'Built with',
+            contact: "Contacts",
+            links: "Quick links"
         },
         validation: {
             required: 'This field is required',
