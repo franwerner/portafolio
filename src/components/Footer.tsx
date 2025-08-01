@@ -1,43 +1,44 @@
 import links from '@/constant/links.constants';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Github, Globe, Instagram, Linkedin, Mail, Twitter } from 'lucide-react';
+import { Github, Globe, Instagram, Linkedin, Mail } from 'lucide-react';
 import React from 'react';
+
+const socialLinks = [
+  {
+    name: 'GitHub',
+    url: links.github,
+    icon: <Github className="w-5 h-5" />,
+  },
+  {
+    name: 'LinkedIn',
+    url: links.linkedin,
+    icon: <Linkedin className="w-5 h-5" />,
+  },
+  {
+    name: 'Instagram',
+    url: links.instagram,
+    icon: <Instagram className="w-5 h-5" />,
+  },
+  {
+    name: 'Email',
+    url: `mailto:${links.gmail}`,
+    icon: <Mail className="w-5 h-5" />,
+  },
+];
+
+const techStack = [
+  'React',
+  'TypeScript',
+  'Tailwind CSS',
+  'Vite',
+];
+
 
 export default function Footer() {
   const { translate, language, toggleLanguage } = useLanguage();
 
-  const socialLinks = [
-    {
-      name: 'GitHub',
-      url: links.github,
-      icon: <Github className="w-5 h-5" />,
-    },
-    {
-      name: 'LinkedIn',
-      url: links.linkedin,
-      icon: <Linkedin className="w-5 h-5" />,
-    },
-    {
-      name: 'Instagram',
-      url: links.instagram,
-      icon: <Instagram className="w-5 h-5" />,
-    },
-    {
-      name: 'Email',
-      url: `mailto:${links.gmail}`,
-      icon: <Mail className="w-5 h-5" />,
-    },
-  ];
-
-  const techStack = [
-    'React',
-    'TypeScript',
-    'Tailwind CSS',
-    'Vite',
-  ];
-
   return (
-    <footer className="bg-background border-t border-border">
+    <footer className="bg-background border-t relative z-10 border-border">
       <div className="container-custom">
         <div className="py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

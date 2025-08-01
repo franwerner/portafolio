@@ -21,11 +21,10 @@ export default function ParticlesBackground() {
     <Particles
       id="tsparticles"
 
-      className="absolute  w-full h-full "
       options={{
         fullScreen: {
-          enable: false,
-          zIndex: -1,
+          enable: true,
+          zIndex: -10,
         },
         particles: {
           number: {
