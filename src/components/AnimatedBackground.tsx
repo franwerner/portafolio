@@ -20,16 +20,14 @@ export default function ParticlesBackground() {
   return (
     <Particles
       id="tsparticles"
-
-      className="absolute  w-full h-full "
       options={{
         fullScreen: {
-          enable: false,
+          enable: true,
           zIndex: -10,
         },
         particles: {
           number: {
-            value: 40,
+            value: 80,
             density: {
               enable: true,
             },
