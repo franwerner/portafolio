@@ -17,9 +17,7 @@ const translations = {
         tech: {
             title: 'Tecnologías',
             subtitle: 'Las herramientas y tecnologías que domino',
-            frontend: 'Frontend',
-            backend: 'Backend',
-            devops: 'DevOps',
+            language: "Lenguajes"
         },
         projects: {
             title: 'Proyectos Destacados',
@@ -51,7 +49,6 @@ const translations = {
             required: 'Este campo es requerido',
             email: 'Email inválido',
             minLength: 'Mínimo {min} caracteres',
-            maxLength: "Debe tener como máximo {max} caracteres",
         },
     },
     en: {
@@ -72,9 +69,7 @@ const translations = {
         tech: {
             title: 'Technologies',
             subtitle: 'The tools and technologies I master',
-            frontend: 'Frontend',
-            backend: 'Backend',
-            devops: 'DevOps',
+            language: "Languages"
         },
         projects: {
             title: 'Featured Projects',
@@ -105,7 +100,6 @@ const translations = {
             required: 'This field is required',
             email: 'Invalid email',
             minLength: 'Minimum {min} characters',
-            maxLength: "Maximum {max} characters",
         },
     },
 };

@@ -39,14 +39,10 @@ const useForm = () => {
       }
     }
 
-    if (name === 'message') {
-      if (trimmed.length < 10) {
-        return translate.validation.minLength.replace('{min}', '10');
-      }
-      if (trimmed.length > 300) {
-        return translate.validation.maxLength.replace('{max}', '300');
-      }
+    if (name === 'message' == trimmed.length < 10) {
+      return translate.validation.minLength.replace('{min}', '10');
     }
+
 
     return undefined;
   };
@@ -209,7 +205,7 @@ export default function ContactSection() {
               <label htmlFor="message" className="block text-sm font-medium mb-2">
                 {translate.contact.message}
               </label>
-              <div className="relative">
+              <div className="relative h-[200px]">
                 <MessageSquare className="absolute left-3 top-3 w-5 h-5 text-muted-foreground" />
                 <textarea
                   id="message"
@@ -217,16 +213,17 @@ export default function ContactSection() {
                   value={formData.message}
                   onChange={handleInputChange}
                   rows={5}
+
                   maxLength={300}
                   className={clsx(
-                    "w-full pl-10 pr-4 py-3 bg-background border rounded-lg focus:outline-none focus:ring-2",
+                    "w-full pl-10 resize-none pr-4 py-3 pb-7 bg-background border rounded-lg focus:outline-none focus:ring-2",
                     "transition-colors border-border",
                     errors.message && "border-destructive focus:ring-destructive",
                     !errors.message && "focus:ring-emerald-400 hover:border-emerald-500"
                   )}
                   placeholder={translate.contact.message}
                 />
-                <div className="absolute bottom-2 right-3 text-xs text-muted-foreground">
+                <div className="absolute bottom-1.5 right-3 text-xs text-muted-foreground">
                   {formData.message.trim().length}/300
                 </div>
               </div>
@@ -237,6 +234,7 @@ export default function ContactSection() {
                 </p>
               )}
             </div>
+
 
             <button
               type="submit"
