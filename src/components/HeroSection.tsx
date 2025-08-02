@@ -117,8 +117,10 @@ function HeroTextSection() {
 
 function HeroImageSection() {
   return (
-    <div className="relative mx-auto max-w-[24rem] aspect-square">
-      <div className="w-full h-full rounded-full p-20 bg-gradient-to-br from-emerald-300/70 to-emerald-500/70 flex items-center justify-center shadow-lg" />
+    <div className="relative mx-auto max-w-[12rem] aspect-square">
+      <div className="w-full h-full rounded-full mt-2 flex items-center justify-center ">
+        <img src="/logo2.png" className="h-auto w-auto max-h-full max-w-full" alt="Logo" />
+      </div>
       <div className="absolute -top-5 -right-5 w-8 h-8 bg-emerald-500 rounded-full" />
       <div className="absolute -bottom-5 -left-5 w-6 h-6 bg-emerald-300 rounded-full" />
       <div className="absolute top-1/2 -left-8 w-4 h-4 bg-emerald-400 rounded-full" />

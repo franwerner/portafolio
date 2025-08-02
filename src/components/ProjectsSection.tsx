@@ -37,9 +37,6 @@ const ProjectPreviewButton = memo(({
         <span className="text-xl font-bold text-white/80">
           {project.title.charAt(0)}
         </span>
-        <div className="absolute top-1 right-1 w-4 h-4 bg-white/20 rounded-full flex items-center justify-center">
-          <span className="text-white/80 text-xs font-bold">{project.id}</span>
-        </div>
       </div>
       <h4 className="font-medium text-sm text-foreground mb-1 line-clamp-1">
         {project.title}
@@ -123,10 +120,6 @@ const ProjectMainDisplay = ({ project }) => (
     </div>
 
     <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
-
-    <div className="absolute bottom-4 right-4 w-16 h-16 border-2 border-white/30 rounded-full flex items-center justify-center">
-      <span className="text-white/70 text-sm font-bold">#{project.id}</span>
-    </div>
   </div>
 );
 

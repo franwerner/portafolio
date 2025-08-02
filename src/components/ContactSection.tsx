@@ -211,16 +211,19 @@ const TextareaField = memo(
             )}
             placeholder={translate.contact[name]}
           />
-          <div className="absolute bottom-1.5 right-3 text-xs text-muted-foreground">
-            {value.trim().length}/{maxLength}
+          <div className="absolute flex justify-between w-full px-4 items-center bottom-1.5 right-3 text-xs text-muted-foreground">
+            {
+              error && <p className="text-sm text-destructive flex items-center gap-1">
+                <AlertCircle className="w-4 h-4" />
+                {error}
+              </p>
+            }
+            <span>
+              {value.trim().length}/{maxLength}
+            </span>
           </div>
         </div>
-        {error && (
-          <p className="mt-2 text-sm text-destructive flex items-center gap-1">
-            <AlertCircle className="w-4 h-4" />
-            {error}
-          </p>
-        )}
+
       </div>
     );
   }

@@ -12,12 +12,15 @@ const NAV_ITEMS = [
 ];
 
 const Logo = memo(() => {
-  const { translate } = useLanguage()
   return (
-    <div className="flex items-center">
-      <span className="text-2xl font-bold gradient-text">{translate.hero.name}</span>
+    <div className="flex items-center gap-2 justify-center">
+      <img
+        src="/logo2.png"
+        className="h-[45px] w-max-min"
+        alt="Logo"
+      />
     </div>
-  );
+  )
 })
 
 const NavLinks = memo(({
