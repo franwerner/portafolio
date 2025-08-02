@@ -8,6 +8,7 @@
     "start": "node dist/server/node-build.mjs"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.9.0",
     "clsx": "^2.1.1",

@@ -2,6 +2,7 @@ import React, { memo, useCallback, useEffect, useState } from 'react';
 import { Mail, User, MessageSquare, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import clsx from 'clsx';
+import EmailServive from '@/service/email.service';
 
 interface FormData {
   name: string;
@@ -75,25 +76,22 @@ const useForm = () => {
   }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    if (!validateForm()) return;
+    if (!validateForm()) return
 
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      console.log('Form submitted:', formData);
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-      setErrors({});
+      await EmailServive.sendToTemplateES(formData)
+      setSubmitStatus("success")
     } catch (error) {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
+      setSubmitStatus("error")
     }
-  };
+    setIsSubmitting(false)
+
+  }
 
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
