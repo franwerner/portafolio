@@ -7,10 +7,10 @@ import FastApiSVG from "@/svg/tech/FastApi.svg";
 import FramerMotionSVG from "@/svg/tech/FramerMotion.svg";
 import HeroUiSVG from "@/svg/tech/HeroUI.svg";
 import HTML5SVG from "@/svg/tech/Html5.svg";
-import JavaSVG from "@/svg/tech/Java.svg";
 import JsSVG from "@/svg/tech/Js.svg";
 import JwtSVG from "@/svg/tech/Jwt.svg";
 import MySQlSVG from "@/svg/tech/MySql.svg";
+import NativewindSVG from "@/svg/tech/Nativewind.svg";
 import NetlifySVG from "@/svg/tech/Netlify.svg";
 import NextJsSVG from "@/svg/tech/NextJs.svg";
 import NodeJsSVG from "@/svg/tech/NodeJsSVG.svg";
@@ -92,11 +92,6 @@ const frontendTech: Technologies = [
         level: 4
     },
     {
-        name: "Expo",
-        Icon: ExpoSVG,
-        level: 3
-    },
-    {
         name: "TailwindCSS",
         Icon: TailwindSVG,
         level: 4
@@ -112,11 +107,6 @@ const frontendTech: Technologies = [
         level: 5
     },
     {
-        name: "React Native",
-        Icon: ReactNativeSVG,
-        level: 3
-    },
-    {
         name: "Redux",
         Icon: ReduxSVG,
         level: 4
@@ -130,6 +120,24 @@ const frontendTech: Technologies = [
         name: "Framer motion",
         Icon: FramerMotionSVG,
         level: 3
+    }
+]
+
+const mobileTech: Technologies = [
+    {
+        name: "React Native",
+        Icon: ReactNativeSVG,
+        level: 3
+    },
+    {
+        name: "Expo",
+        Icon: ExpoSVG,
+        level: 3
+    },
+    {
+        name: "Nativewind",
+        Icon: NativewindSVG,
+        level: 4
     }
 ]
 
@@ -209,9 +217,9 @@ const devOpsTech: Technologies = [
         frontendTech,
         backendTech,
         devOpsTech,
-        databaseTech
+        databaseTech,
+        mobileTech
     ].forEach((arr) => arr.sort((a, b) => b.level - a.level))
 
-export {
-    frontendTech, languagesTech, backendTech, devOpsTech, databaseTech
-};
+export { backendTech, databaseTech, devOpsTech, frontendTech, languagesTech, mobileTech };
+

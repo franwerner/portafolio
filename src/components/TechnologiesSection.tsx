@@ -1,7 +1,8 @@
 import { Star } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { backendTech, databaseTech, devOpsTech, frontendTech, languagesTech, Technology } from '@/constant/tecnologies.constant';
+import { backendTech, databaseTech, devOpsTech, frontendTech, languagesTech, mobileTech, Technology } from '@/constant/tecnologies.constant';
 import { useOnScreen } from '@/hooks/useOnScren.hook';
+import { title } from 'process';
 
 const StarRating = ({ level }: { level: number }) => {
   return (
@@ -54,6 +55,7 @@ export default function TechnologiesSection() {
   const techSections = [
     { title: translate.tech.language, techs: languagesTech },
     { title: "Frontend", techs: frontendTech },
+    { title: "Mobile", techs: mobileTech },
     { title: "Backend", techs: backendTech },
     { title: "Database", techs: databaseTech },
     { title: "DevOps", techs: devOpsTech },
