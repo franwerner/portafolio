@@ -1,7 +1,7 @@
 import projects, { Project } from '@/constant/projects.constant';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { Language, useLanguage } from '@/contexts/LanguageContext';
 import clsx from 'clsx';
-import { ChevronLeft, ChevronRight, ExternalLink, Github } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Github, Lock } from 'lucide-react';
 import { memo, useCallback, useEffect, useState } from 'react';
 
 interface ProjectPreviewButtonProps {
@@ -11,12 +11,17 @@ interface ProjectPreviewButtonProps {
   index: number
 }
 
+const formatDate = (date: Date, language: Language) =>
+  date.toLocaleDateString(language === "es" ? "es-AR" : "en-US", {
+    year: "numeric",
+    month: "short"
+  })
 
 const ProjectPreviewButton = memo(({
   project,
   isActive,
   changeProject,
-  index
+  index,
 }: ProjectPreviewButtonProps) => {
   return (
     <button
@@ -41,89 +46,105 @@ const ProjectPreviewButton = memo(({
       <h4 className="font-medium text-sm text-foreground mb-1 line-clamp-1">
         {project.title}
       </h4>
-      <p className="text-xs text-primary font-medium">{project.category}</p>
     </button>
   )
 })
 
-const ProjectInfo = ({ project, translate }) => (
-  <div
-    className="flex flex-col justify-center space-y-4 lg:space-y-6">
-    <div>
-      <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 lg:mb-4 text-foreground">
-        {project.title}
-      </h3>
-      <p className="text-muted-foreground leading-relaxed text-sm md:text-base lg:text-lg">
-        {project.description}
-      </p>
-    </div>
+const ProjectInfo = ({
+  description,
+  title,
+  technologies,
+  githubUrl,
+  period,
+  isPrivate
+}: Project) => {
+  const { translate, language } = useLanguage()
 
-    <div>
-      <h4 className="font-semibold mb-4 text-foreground">Tecnologías:</h4>
-      <div className="flex flex-wrap gap-2">
-        {project.technologies.map((tech, index) => (
+  return (
+    <div className="flex flex-col justify-center space-y-4 lg:space-y-6">
+      <div>
+        <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-1 lg:mb-2 text-foreground">
+          {title}
+        </h3>
+        {period?.start &&
+          <p className="text-sm font-semibold capitalize my-2">
+            {formatDate(period.start, language)} –{" "}
+            {period.end ? formatDate(period.end, language) : translate.projects.datePeriod}
+          </p>
+        }
+        <p className="text-muted-foreground leading-relaxed text-md">
+          {description(language)}
+        </p>
+      </div>
+
+      <div>
+        <h4 className="font-semibold mb-4 text-foreground">{translate.projects.technologiesList} :</h4>
+        <div className="flex flex-wrap gap-2">
+          {technologies.map((tech, index) => (
+            <span
+              key={index}
+              className={clsx(
+                "px-3 py-[6px] bg-emerald-100 text-emerald-600 rounded-full",
+                "text-xs font-semibold tracking-wide uppercase shadow-sm transition hover:bg-emerald-400",
+                "hover:text-white  select-none"
+              )}>
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="flex flex-col sm:flex-row gap-3 lg:gap-4">
+        {isPrivate ? (
           <span
-            key={index}
-            className={clsx(
-              "px-3 py-[6px] bg-emerald-100 text-emerald-600 rounded-full",
-              "text-xs font-semibold tracking-wide uppercase shadow-sm transition hover:bg-emerald-400",
-              "hover:text-white  select-none"
-            )}
+            className="flex items-center gap-2 border border-muted-foreground text-muted-foreground px-6 py-3 rounded-lg cursor-not-allowed bg-muted/40 font-medium select-none"
           >
-            {tech}
+            <Lock className="w-4 h-4" />
+            {translate.projects.privateRepo}
           </span>
-        ))}
+        ) : (
+          <a
+            href={githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 border border-primary text-primary px-6 py-3 rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover-lift font-medium"
+          >
+            <Github className="w-4 h-4" />
+            {translate.projects.viewCode}
+          </a>
+        )}
       </div>
     </div>
-
-    <div className="flex flex-col sm:flex-row gap-3 lg:gap-4">
-      {project.liveUrl && (
-        <a
-          href={project.liveUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-all duration-300 hover-lift font-medium"
-        >
-          <ExternalLink className="w-4 h-4" />
-          {translate.projects.viewLive}
-        </a>
-      )}
-      {project.githubUrl && (
-        <a
-          href={project.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 border border-primary text-primary px-6 py-3 rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover-lift font-medium"
-        >
-          <Github className="w-4 h-4" />
-          {translate.projects.viewCode}
-        </a>
-      )}
-    </div>
-  </div>
-);
-
-const ProjectMainDisplay = ({ project }) => (
+  )
+}
+const ProjectMainDisplay = ({
+  color,
+  title
+}: {
+  color: string,
+  title: string
+}) => (
   <div
     className={clsx(
       "aspect-video rounded-lg flex items-center justify-center relative overflow-hidden",
       "bg-gradient-to-br",
-      project.color
-    )}
-  >
-    <div className="absolute top-4 left-4 px-3 py-1 bg-black/20 backdrop-blur-sm rounded-full text-white text-sm font-medium">
-      {project.category}
-    </div>
-
+      color
+    )}>
     <div className="text-6xl font-bold text-white/80">
-      {project.title.charAt(0)}
+      {title.charAt(0)}
     </div>
 
     <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
   </div>
 );
 
-const PaginationDots = ({ projects, currentProject, goToProject }) => (
+const PaginationDots = ({
+  currentProject,
+  goToProject
+}: {
+  currentProject: number,
+  goToProject: (n: number) => void
+}) => (
   <div className="flex justify-center mt-6 gap-2">
     {projects.map((_, index) => (
       <button
@@ -198,10 +219,9 @@ const useProjectSection = () => {
   const [isStop, setStop] = useState(false)
 
   const changeProject = useCallback((index) => {
-    if (isAnimating || index === currentProject) return;
-    setIsAnimating(true);
-    setCurrentProject(index);
-    setTimeout(() => setIsAnimating(false), 300);
+    setIsAnimating(true)
+    setCurrentProject(index)
+    setTimeout(() => setIsAnimating(false), 300)
   }, [])
 
   const nextProject = useCallback(() => {
@@ -237,7 +257,6 @@ const useProjectSection = () => {
 
 export default function ProjectsSection() {
 
-  const { translate } = useLanguage()
   const {
     changeProject,
     currentProject,
@@ -256,25 +275,27 @@ export default function ProjectsSection() {
         <div
           onMouseEnter={() => setStop(true)}
           onMouseLeave={() => setStop(false)}
-          className="relative mb-16">
+          className="relative group mb-16">
           <div
             className={clsx(
-              "glass-effect hover:border-emerald-200 border-2  rounded-2xl   overflow-hidden hover-lift transition-all duration-300",
+              "bg-background/80 group-hover:border-emerald-200 border-2  rounded-2xl overflow-hidden group-hover:-translate-y-1 transition-all duration-300",
               isAnimating ? "scale-[0.98] opacity-80" : "scale-100 opacity-100"
             )}>
             <div
               className="grid lg:grid-cols-2 gap-6 p-4 md:p-6 lg:p-8">
               <div className="relative">
-                <ProjectMainDisplay project={current} />
+                <ProjectMainDisplay
+                  color={current.color}
+                  title={current.title}
+                />
                 <PaginationDots
-                  projects={projects}
                   currentProject={currentProject}
                   goToProject={changeProject}
                 />
               </div>
               <ProjectInfo
-                project={current}
-                translate={translate} />
+                {...current}
+              />
             </div>
           </div>
 

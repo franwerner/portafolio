@@ -209,7 +209,10 @@ const TextareaField = memo(
             )}
             placeholder={translate.contact[name]}
           />
-          <div className="absolute flex justify-between w-full px-4 items-center bottom-1.5 right-3 text-xs text-muted-foreground">
+          <div className={clsx(
+            "flex justify-end w-full items-center bottom-1.5 right-3 text-xs text-muted-foreground",
+            error && "justify-between"
+          )}>
             {
               error && <p className="text-sm text-destructive flex items-center gap-1">
                 <AlertCircle className="w-4 h-4" />
@@ -288,7 +291,7 @@ const ContactSection = () => {
         <div className="max-w-2xl mx-auto">
           <form
             onSubmit={handleSubmit}
-            className="glass-effect border-2 border-muted p-8 rounded-2xl space-y-6"
+            className="bg-background/80 border-2 border-muted p-8 rounded-2xl space-y-6"
           >
             <InputField
               id="name"

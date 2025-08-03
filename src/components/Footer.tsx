@@ -50,7 +50,7 @@ const BrandInfo = () => {
         {translate.hero.name}
       </h3>
       <p className="text-muted-foreground">
-        {translate.hero.title} - {translate.hero.description}
+        {translate.hero.description}
       </p>
 
       <button

@@ -1,6 +1,7 @@
 import { Star } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { backendTech, devOpsTech, frontendTech, languagesTech, Technology } from '@/constant/tecnologies.constant';
+import { backendTech, databaseTech, devOpsTech, frontendTech, languagesTech, Technology } from '@/constant/tecnologies.constant';
+import { useOnScreen } from '@/hooks/useOnScren.hook';
 
 const StarRating = ({ level }: { level: number }) => {
   return (
@@ -23,18 +24,31 @@ const TechCard = ({
   level,
   name,
 }: Technology) => {
+
+  const { ref, isVisible } = useOnScreen<HTMLDivElement>({
+    threshold: 0.1,
+  });
+
   return (
-    <div className="glass-effect p-2 py-4 hover:scale-105 scale:95 rounded-xl group emerald-border hover:emerald-glow transform transition-transform duration-300 hover:-translate-y-1">
-      <div className="flex items-center justify-center mb-4">
-        <Icon width={58} height={58} />
-      </div>
-      <h3
-        className="text-lg font-semibold text-center mb-2" >
-        {name}
-      </h3>
-      <div className="flex justify-center">
-        <StarRating level={level} />
-      </div>
+    <div
+      ref={ref}
+      className="bg-background/80 min-h-[100px] p-2 py-4 hover:scale-105 scale:95 rounded-xl group emerald-border hover:emerald-glow transform transition-transform duration-300 hover:-translate-y-1">
+      {
+        isVisible && (
+          <>
+            <div className="flex items-center justify-center mb-4">
+              <Icon width={58} height={58} />
+            </div>
+            <h3
+              className="text-lg font-semibold text-center mb-2" >
+              {name}
+            </h3>
+            <div className="flex justify-center">
+              <StarRating level={level} />
+            </div>
+          </>
+        )
+      }
     </div>
   );
 };
@@ -46,6 +60,7 @@ export default function TechnologiesSection() {
     { title: translate.tech.language, techs: languagesTech },
     { title: "Frontend", techs: frontendTech },
     { title: "Backend", techs: backendTech },
+    { title: "Database", techs: databaseTech },
     { title: "DevOps", techs: devOpsTech },
   ]
 
@@ -61,7 +76,7 @@ export default function TechnologiesSection() {
           </p>
         </div>
 
-        <div className="space-y-16 max-w-4xl mx-auto">
+        <div className="space-y-16 max-w-3xl mx-auto">
           {techSections.map(({ title, techs }, index) => (
             <div key={index}>
               <h3 className="text-3xl font-semibold text-center mb-8 text-primary">

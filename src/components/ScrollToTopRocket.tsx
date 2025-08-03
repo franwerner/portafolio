@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 
 const RocketSVG = ({ isAnimating }: { isAnimating: boolean }) => (
@@ -16,9 +17,6 @@ const RocketSVG = ({ isAnimating }: { isAnimating: boolean }) => (
     <path d="M63 52 L60 54 L60 63 L63 65 L66 60 Z" fill="rgba(255,255,255,0.3)" />
     <circle cx="50" cy="30" r="3" fill="rgba(135,206,235,0.8)" />
     <circle cx="50" cy="30" r="2" fill="rgba(255,255,255,0.4)" />
-    {[35, 40, 45, 50, 55].map((y) => (
-      <rect key={y} x="42" y={y} width="16" height="1" fill="rgba(255,255,255,0.3)" />
-    ))}
     <circle cx="39" cy="45" r="1.5" fill="rgba(255,255,255,0.5)" />
     <circle cx="61" cy="45" r="1.5" fill="rgba(255,255,255,0.5)" />
     <ellipse cx="46" cy="68" rx="2" ry="1.5" fill="rgba(255,255,255,0.4)" />
@@ -36,32 +34,25 @@ const RocketSVG = ({ isAnimating }: { isAnimating: boolean }) => (
   </svg>
 );
 
-const RocketFireSmall = ({ isAnimating }: { isAnimating: boolean }) => (
-  <div
-    className={`absolute -bottom-3 left-1/2 transform -translate-x-1/2 ${isAnimating ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'} transition-opacity duration-300`}
-  >
-    <div className="flex justify-center space-x-1">
-      {['orange-400', 'red-400', 'yellow-400', 'orange-500', 'red-500'].map((color, i) => (
-        <div
-          key={i}
-          className={`w-1 h-${i % 2 === 0 ? 3 : 2} bg-${color} rounded-full animate-pulse`}
-          style={{ animationDelay: `${i * 0.1}s` }}
-        />
-      ))}
-    </div>
-  </div>
-);
+const bars = [
+  { delay: 0.2, color: 'bg-orange-400' },
+  { delay: 0.4, color: 'bg-red-400' },
+  { delay: 0.1, color: 'bg-yellow-400' },
+]
 
 const RocketFireTail = ({ isAnimating }: { isAnimating: boolean }) => (
   <div
-    className={`absolute -bottom-6 left-1/2 transform -translate-x-1/2 ${isAnimating ? 'opacity-80' : 'opacity-0 group-hover:opacity-60'} transition-opacity duration-300`}
+    className={`absolute -bottom-3 left-1/2 transform -translate-x-1/2 ${isAnimating ? 'opacity-80' : 'opacity-0 group-hover:opacity-60'} transition-opacity duration-300`}
   >
     <div className="flex justify-center space-x-2">
-      {[0.2, 0.4, 0.1].map((delay, i) => (
+      {bars.map((bar, i) => (
         <div
           key={i}
-          className="w-0.5 h-2 bg-orange-300 rounded-full animate-pulse"
-          style={{ animationDelay: `${delay}s` }}
+          className={`w-1 ${bar.color} rounded-full animate-pulse`}
+          style={{
+            animationDelay: `${bar.delay}s`,
+            height: i === 1 ? 18 : 12,
+          }}
         />
       ))}
     </div>
@@ -77,42 +68,43 @@ const GlowLayer = ({ isAnimating }: { isAnimating: boolean }) => (
 );
 
 const ScrollToTopRocket = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [isVisible, setIsVisible] = useState(false)
+  const [isAnimating, setIsAnimating] = useState(false)
 
   useEffect(() => {
     const toggleVisibility = () => {
       const scrolled = document.documentElement.scrollTop;
       const maxHeight = document.documentElement.scrollHeight - window.innerHeight;
       const scrollPercent = scrolled / maxHeight;
-      setIsVisible(scrollPercent > 0.75);
+      setIsVisible(scrollPercent > 0.50);
     };
 
-    window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
-  }, []);
+    window.addEventListener('scroll', toggleVisibility)
+    return () => window.removeEventListener('scroll', toggleVisibility)
+  }, [])
 
   const scrollToTop = () => {
-    setIsAnimating(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    setTimeout(() => setIsAnimating(false), 1200);
-  };
-
-  if (!isVisible) return null;
+    setIsAnimating(true)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    setTimeout(() => setIsAnimating(false), 1200)
+  }
 
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-14 right-8 z-50 group p-3 bg-gradient-to-b from-black/70 emerald-glow  to-emerald-600 rounded-2xl transition-all duration-300 hover:scale-110 ${isAnimating ? 'animate-bounce' : ''}`}
-      title="Volver arriba"
-    >
+      className={clsx(
+        "fixed bottom-14 right-8 z-50 group p-3 bg-gradient-to-b from-black/70",
+        "emerald-glow to-emerald-600 rounded-2xl transition-all duration-300 hover:scale-110",
+        isAnimating && "animate-bounce",
+        !isVisible && "hidden"
+      )}
+      title="Volver arriba">
       <RocketSVG isAnimating={isAnimating} />
-      <RocketFireSmall isAnimating={isAnimating} />
       <RocketFireTail isAnimating={isAnimating} />
       <GlowLayer isAnimating={isAnimating} />
     </button>
-  );
-};
+  )
+}
 
 
 export default ScrollToTopRocket;

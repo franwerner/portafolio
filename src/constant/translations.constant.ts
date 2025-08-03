@@ -26,6 +26,9 @@ const translations = {
             viewCode: 'Ver código',
             prev: 'Anterior',
             next: 'Siguiente',
+            technologiesList: "Tecnologias",
+            datePeriod: "Actualidad",
+            privateRepo: "Repositorio privado"
         },
         contact: {
             title: 'Contacto',
@@ -78,6 +81,9 @@ const translations = {
             viewCode: 'View Code',
             prev: 'Previous',
             next: 'Next',
+            technologiesList: "Technologies",
+            datePeriod: "Present",
+            privateRepo: "Private repository"
         },
         contact: {
             title: 'Contact',

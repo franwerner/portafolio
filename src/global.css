@@ -77,10 +77,6 @@
     @apply bg-gradient-to-r from-primary to-emerald-400 bg-clip-text text-transparent;
   }
 
-  .glass-effect {
-    @apply backdrop-blur-sm bg-background/80 border border-border/50;
-  }
-
   .hover-lift {
     @apply transition-transform duration-300 hover:transform hover:-translate-y-1;
   }

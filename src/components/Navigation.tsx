@@ -90,11 +90,9 @@ const NavMenu = memo(({
   return (
     <ul
       className={clsx(
-        "md:hidden px-4 py-4 space-y-4 glass-effect",
-        "animate-fade-in-down",
-        "border border-border rounded-lg shadow-lg"
+        "md:hidden px-4 border-t backdrop-blur-[6px] bg-background/60 py-4 space-y-4",
+        "animate-fade-in"
       )}
-      style={{ animationDuration: '300ms', animationFillMode: 'forwards' }}
     >
       <NavLinks
         scrollToSection={scrollToSection}
@@ -128,25 +126,26 @@ export default function Navigation() {
   return (
     <nav
       className={clsx(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isScrolled ? 'backdrop-blur-md bg-background/95 border-b border-border/50 shadow-lg emerald-glow' : 'bg-transparent'
+        "fixed top-0 left-0 w-full right-0 z-50",
+        isScrolled && "border-b border-border/50 shadow-lg "
       )}
     >
-      <div className="container-custom">
-        <div className="flex items-center justify-between h-16 px-4">
-          <Logo />
+      <div className={clsx(
+        "flex items-center justify-between h-16 px-4",
+        isScrolled && " backdrop-blur-[6px] bg-background",
+      )}>
+        <Logo />
 
-          <ul className="hidden md:flex items-center space-x-8">
-            <NavLinks scrollToSection={scrollToSection} />
-          </ul>
+        <ul className="hidden md:flex items-center space-x-8">
+          <NavLinks scrollToSection={scrollToSection} />
+        </ul>
 
-          <Controls
-            isMobileMenuOpen={isMobileMenuOpen}
-            setIsMobileMenuOpen={setIsMobileMenuOpen}
-          />
-        </div>
-        {isMobileMenuOpen && <NavMenu scrollToSection={scrollToSection} />}
+        <Controls
+          isMobileMenuOpen={isMobileMenuOpen}
+          setIsMobileMenuOpen={setIsMobileMenuOpen}
+        />
       </div>
+      {isMobileMenuOpen && <NavMenu scrollToSection={scrollToSection} />}
     </nav>
   );
 }

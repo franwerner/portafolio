@@ -22,13 +22,13 @@ import ReactNativeSVG from "@/svg/tech/ReactNative.svg";
 import ReactRouterSVG from "@/svg/tech/ReactRouter.svg";
 import ReduxSVG from "@/svg/tech/Redux.svg";
 import Sequealize from "@/svg/tech/Sequealize.svg";
+import SqlSVG from "@/svg/tech/Sql.svg";
 import Sqlite from "@/svg/tech/SqlLIte.svg";
 import TailwindSVG from "@/svg/tech/Tailwindcss.svg";
 import TsSVG from "@/svg/tech/Ts.svg";
 import VercelSVG from "@/svg/tech/Vercel.svg";
 import ViteSVG from "@/svg/tech/Vite.svg";
 import WebSocketSVG from "@/svg/tech/WebSocket.svg";
-import ZodSVG from "@/svg/tech/Zod.svg";
 
 export interface Technology {
     name: string;
@@ -58,6 +58,11 @@ const languagesTech: Technologies = [
         name: "Java",
         Icon: JavaSVG,
         level: 1
+    },
+    {
+        name: "SQL",
+        Icon: SqlSVG,
+        level: 4
     }
 ]
 
@@ -145,16 +150,6 @@ const backendTech: Technologies = [
         level: 5
     },
     {
-        name: "MySQL",
-        Icon: MySQlSVG,
-        level: 4
-    },
-    {
-        name: "SQL Lite",
-        Icon: Sqlite,
-        level: 3
-    },
-    {
         name: "Sequealize",
         Icon: Sequealize,
         level: 3
@@ -175,14 +170,22 @@ const backendTech: Technologies = [
         level: 5
     },
     {
-        name: "Zod",
-        Icon: ZodSVG,
-        level: 4
-    },
-    {
         name: "FastAPI",
         Icon: FastApiSVG,
         level: 2
+    }
+]
+
+const databaseTech: Technologies = [
+    {
+        name: "MySQL",
+        Icon: MySQlSVG,
+        level: 4
+    },
+    {
+        name: "SQL Lite",
+        Icon: Sqlite,
+        level: 3
     }
 ]
 
@@ -210,9 +213,10 @@ const devOpsTech: Technologies = [
         languagesTech,
         frontendTech,
         backendTech,
-        devOpsTech
+        devOpsTech,
+        databaseTech
     ].forEach((arr) => arr.sort((a, b) => b.level - a.level))
 
 export {
-    frontendTech, languagesTech, backendTech, devOpsTech
+    frontendTech, languagesTech, backendTech, devOpsTech, databaseTech
 };

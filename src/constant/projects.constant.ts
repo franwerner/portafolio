@@ -1,118 +1,65 @@
+import { Language } from "@/contexts/LanguageContext";
 
+function translate<T>(dict: Record<Language, T>) {
+    return (lang: Language): T => dict[lang];
+}
 
 export interface Project {
     title: string;
-    description: string;
-    image: string;
+    description: (l: Language) => string;
     technologies: string[];
-    liveUrl?: string;
-    githubUrl?: string;
-    category: string;
+    githubUrl: string
     color: string;
+    isPrivate?: boolean
+    period: {
+        start: Date;
+        end?: Date;
+    }
 }
 
 const projects: Project[] = [
     {
-        title: 'E-Commerce Platform',
-        description: 'A full-stack e-commerce platform built with React, Node.js, and MongoDB. Features include user authentication, payment processing, inventory management, and real-time updates.',
-        image: '/api/placeholder/600/400',
-        technologies: ['React', 'Node.js', 'MongoDB', 'Stripe', 'Socket.io'],
-        liveUrl: 'https://example.com',
-        githubUrl: 'https://github.com',
-        category: 'E-Commerce',
-        color: 'from-blue-500 to-purple-600'
+        title: 'Bot automatizado para whatsapp',
+        description: translate({
+            en: "WhatsApp automation tool designed to capture demand from each user number. It provides a web interface where agents can connect via a QR code. The system intelligently redirects conversations to the least busy agents, ensuring efficient and balanced response handling.",
+            es: "Herramienta de automatización para WhatsApp diseñada para capturar la demanda de cada número de usuario. Ofrece una interfaz web donde los agentes pueden conectarse mediante un código QR. El sistema redirige las conversaciones a los agentes menos ocupados, garantizando una atención eficiente y equilibrada."
+        }),
+        technologies: ['Preact', 'Node.js', 'Baileys', 'Typescript', "Express", "Vite"],
+        githubUrl: 'https://github.com/franwerner/wsp-777',
+        color: 'from-blue-500 to-purple-600',
+        period: {
+            start: new Date("07/01/2025")
+        },
+        isPrivate: true
     },
     {
-        title: 'Task Management App',
-        description: 'A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features. Built with modern web technologies.',
-        image: '/api/placeholder/600/400',
-        technologies: ['Next.js', 'TypeScript', 'PostgreSQL', 'Prisma', 'Tailwind CSS'],
-        liveUrl: 'https://example.com',
-        githubUrl: 'https://github.com',
-        category: 'Productivity',
-        color: 'from-green-500 to-emerald-600'
-    },
-    {
-        title: 'Weather Dashboard',
-        description: 'A responsive weather dashboard that displays current weather conditions, forecasts, and weather maps. Features location-based services and data visualization.',
-        image: '/api/placeholder/600/400',
-        technologies: ['React', 'Chart.js', 'OpenWeather API', 'Geolocation API'],
-        liveUrl: 'https://example.com',
-        githubUrl: 'https://github.com',
-        category: 'Data Visualization',
-        color: 'from-sky-500 to-blue-600'
-    },
-    {
-        title: 'Social Media Analytics',
-        description: 'A comprehensive analytics platform for social media metrics with real-time data processing, custom dashboards, and automated reporting features.',
-        image: '/api/placeholder/600/400',
-        technologies: ['Vue.js', 'Python', 'FastAPI', 'Redis', 'Docker'],
-        liveUrl: 'https://example.com',
-        githubUrl: 'https://github.com',
-        category: 'Analytics',
-        color: 'from-purple-500 to-pink-600'
-    },
-    {
-        title: 'Real Estate Platform',
-        description: 'Modern real estate platform with property listings, virtual tours, mortgage calculator, and advanced search filters. Integrated with mapping services.',
-        image: '/api/placeholder/600/400',
-        technologies: ['Next.js', 'Node.js', 'MongoDB', 'Mapbox', 'AWS S3'],
-        liveUrl: 'https://example.com',
-        githubUrl: 'https://github.com',
-        category: 'Real Estate',
-        color: 'from-orange-500 to-red-600'
-    },
-    {
-        title: 'Learning Management System',
-        description: 'Complete LMS with course creation, video streaming, progress tracking, quizzes, and certificates. Supports multiple user roles and payment integration.',
-        image: '/api/placeholder/600/400',
-        technologies: ['React', 'Express', 'MySQL', 'Video.js', 'Stripe'],
-        liveUrl: 'https://example.com',
-        githubUrl: 'https://github.com',
-        category: 'Education',
-        color: 'from-indigo-500 to-purple-600'
-    },
-    {
-        title: 'Healthcare Management',
-        description: 'Digital healthcare platform for appointment scheduling, patient records, telemedicine, and prescription management with HIPAA compliance.',
-        image: '/api/placeholder/600/400',
-        technologies: ['Angular', 'NestJS', 'PostgreSQL', 'WebRTC', 'Docker'],
-        liveUrl: 'https://example.com',
-        githubUrl: 'https://github.com',
-        category: 'Healthcare',
-        color: 'from-teal-500 to-green-600'
-    },
-    {
-        title: 'Financial Dashboard',
-        description: 'Advanced financial dashboard with portfolio tracking, market analysis, cryptocurrency monitoring, and automated trading strategies.',
-        image: '/api/placeholder/600/400',
-        technologies: ['React', 'D3.js', 'Python', 'TradingView', 'WebSocket'],
-        liveUrl: 'https://example.com',
-        githubUrl: 'https://github.com',
-        category: 'FinTech',
-        color: 'from-yellow-500 to-orange-600'
-    },
-    {
-        title: 'Restaurant Management',
-        description: 'Complete restaurant management system with POS, inventory tracking, staff scheduling, table reservations, and delivery integration.',
-        image: '/api/placeholder/600/400',
-        technologies: ['Vue.js', 'Laravel', 'MySQL', 'Pusher', 'Stripe'],
-        liveUrl: 'https://example.com',
-        githubUrl: 'https://github.com',
-        category: 'Hospitality',
-        color: 'from-red-500 to-pink-600'
-    },
-    {
-        title: 'IoT Monitoring Platform',
-        description: 'IoT device monitoring platform with real-time sensor data, alerts, device management, and predictive maintenance using machine learning.',
-        image: '/api/placeholder/600/400',
-        technologies: ['React', 'Node.js', 'InfluxDB', 'MQTT', 'TensorFlow'],
-        liveUrl: 'https://example.com',
-        githubUrl: 'https://github.com',
-        category: 'IoT',
-        color: 'from-cyan-500 to-blue-600'
+        title: "E-Commerce",
+        description: translate({
+            es: "Plataforma de e-commerce desarrollada para automatizar el proceso de ventas. Incluye integración con MercadoPago, gestión de productos y un carrito de compras funcional.",
+            en: "E-commerce platform built to automate the sales process. Includes MercadoPago integration, product management, and a functional shopping cart."
+        }),
+        technologies: ["React", "Vite", "Express", "NodeJS", "Typescript", "MySQL", "Knex", "Zod", "React router", "HeroUI", "Tailwindcss", "Framer motion"],
+        color: 'from-red-500 to-orange-600',
+        githubUrl: "https://github.com/franwerner/clothing-store",
+        period: {
+            start: new Date("10/01/2024"),
+            end: new Date("01/01/2025")
+        }
+    }, {
+        title: "Swipeable",
+        description: translate({
+            es: "Aplicación móvil para matchear ideas entre usuarios de forma intuitiva. Inspirada en la experiencia de deslizamiento, permite descubrir y conectar con personas que comparten intereses similares.",
+            en: "Mobile app to match ideas between users in an intuitive way. Inspired by swipe-based interaction, it helps discover and connect with people who share similar interests."
+        }),
+        color: "from-pink-500 to-rose-600",
+        githubUrl: "https://github.com/franwerner/swipeable-app",
+        period: {
+            start: new Date("07/01/2025"),
+            end: new Date("08/01/2025")
+        },
+        technologies: ["React native", "Expo", "Zustand", "Typescript", "Nativewind"]
     }
-];
+]
 
 
 export default projects
