@@ -26,29 +26,24 @@ const TechCard = ({
 }: Technology) => {
 
   const { ref, isVisible } = useOnScreen<HTMLDivElement>({
-    threshold: 0.1,
-  });
-
+    threshold: 0,
+  })
   return (
     <div
       ref={ref}
       className="bg-background/80 min-h-[100px] p-2 py-4 hover:scale-105 scale:95 rounded-xl group emerald-border hover:emerald-glow transform transition-transform duration-300 hover:-translate-y-1">
-      {
-        isVisible && (
-          <>
-            <div className="flex items-center justify-center mb-4">
-              <Icon width={58} height={58} />
-            </div>
-            <h3
-              className="text-lg font-semibold text-center mb-2" >
-              {name}
-            </h3>
-            <div className="flex justify-center">
-              <StarRating level={level} />
-            </div>
-          </>
-        )
-      }
+      <div className={!isVisible ? "hidden" : ""}>
+        <div className="flex items-center justify-center mb-4">
+          <Icon width={58} height={58} />
+        </div>
+        <h3
+          className="text-lg font-semibold text-center mb-2" >
+          {name}
+        </h3>
+        <div className="flex justify-center">
+          <StarRating level={level} />
+        </div>
+      </div>
     </div>
   );
 };
