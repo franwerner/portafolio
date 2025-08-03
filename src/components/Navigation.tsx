@@ -130,20 +130,22 @@ export default function Navigation() {
         isScrolled && "border-b border-border/50 shadow-lg "
       )}
     >
-      <div className={clsx(
-        "flex items-center justify-between h-16 px-4",
-        isScrolled && " backdrop-blur-[6px] bg-background",
-      )}>
-        <Logo />
+      <div className="bg-background">
+        <div className={clsx(
+          "flex items-center container-custom justify-between h-16 px-4",
+          isScrolled && " backdrop-blur-[6px] ",
+        )}>
+          <Logo />
 
-        <ul className="hidden md:flex items-center space-x-8">
-          <NavLinks scrollToSection={scrollToSection} />
-        </ul>
+          <ul className="hidden md:flex items-center space-x-8">
+            <NavLinks scrollToSection={scrollToSection} />
+          </ul>
 
-        <Controls
-          isMobileMenuOpen={isMobileMenuOpen}
-          setIsMobileMenuOpen={setIsMobileMenuOpen}
-        />
+          <Controls
+            isMobileMenuOpen={isMobileMenuOpen}
+            setIsMobileMenuOpen={setIsMobileMenuOpen}
+          />
+        </div>
       </div>
       {isMobileMenuOpen && <NavMenu scrollToSection={scrollToSection} />}
     </nav>
