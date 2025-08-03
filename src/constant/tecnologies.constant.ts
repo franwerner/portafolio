@@ -55,11 +55,6 @@ const languagesTech: Technologies = [
         level: 2
     },
     {
-        name: "Java",
-        Icon: JavaSVG,
-        level: 1
-    },
-    {
         name: "SQL",
         Icon: SqlSVG,
         level: 4
