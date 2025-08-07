@@ -153,11 +153,6 @@ const backendTech: Technologies = [
         level: 5
     },
     {
-        name: "Sequealize",
-        Icon: Sequealize,
-        level: 3
-    },
-    {
         name: "Web Socket",
         Icon: WebSocketSVG,
         level: 2

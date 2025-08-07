@@ -44,7 +44,7 @@ function Contacts() {
         href={links.github}
         target="_blank"
         rel="noopener noreferrer"
-        className="p-3 rounded-lg border hover:bg-muted transition-colors duration-300 hover-lift transform transition-transform duration-300 ease-in-out"
+        className="p-3 rounded-lg border hover:bg-muted  hover-lift transform transition-transform duration-300 ease-in-out"
         title="GitHub"
       >
         <Github className="w-6 h-6" />
@@ -53,7 +53,7 @@ function Contacts() {
         href={links.linkedin}
         target="_blank"
         rel="noopener noreferrer"
-        className="p-3 rounded-lg border hover:bg-muted transition-colors duration-300 hover-lift transform transition-transform duration-300 ease-in-out"
+        className="p-3 rounded-lg border hover:bg-muted  hover-lift transform transition-transform duration-300 ease-in-out"
         title="LinkedIn"
       >
         <Linkedin className="w-6 h-6" />
@@ -70,14 +70,15 @@ function HeroActions() {
   };
   return (
     <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-up">
-      <button
-        onClick={handleDownloadCV}
-        className="group bg-primary text-primary-foreground px-8 py-4 rounded-lg hover:bg-primary/90 transition-all duration-300 flex items-center justify-center gap-2 font-semibold hover-lift"
-      >
-        <Download className="w-5 h-5 group-hover:animate-bounce" />
-        {translate.hero.downloadCV}
-      </button>
-
+      <a href='/cv.docx' download>
+        <button
+          onClick={handleDownloadCV}
+          className="group bg-primary text-primary-foreground px-8 py-4 rounded-lg hover:bg-primary/90 transition-all duration-300 flex items-center justify-center gap-2 font-semibold hover-lift"
+        >
+          <Download className="w-5 h-5 group-hover:animate-bounce" />
+          {translate.hero.downloadCV}
+        </button>
+      </a>
       <button
         onClick={scrollToContact}
         className="border border-primary text-primary px-8 py-4 rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300 flex items-center justify-center gap-2 font-semibold hover-lift"
