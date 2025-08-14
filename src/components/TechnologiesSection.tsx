@@ -9,7 +9,7 @@ const StarRating = ({ level }: { level: number }) => {
       {[1, 2, 3, 4, 5].map((star) => (
         <Star
           key={star}
-          className={`w-3 h-3 ${star <= level
+          className={`w-4 h-4 ${star <= level
             ? 'text-yellow-400 fill-yellow-400'
             : 'text-muted-foreground'
             }`}
@@ -31,7 +31,7 @@ const TechCard = ({
   return (
     <div
       ref={ref}
-      className="bg-background/80 min-h-[80px]  py-2 hover:scale-105 scale:95 rounded-xl group emerald-border hover:emerald-glow transform transition-transform duration-300 hover:-translate-y-1">
+      className="bg-background/80 min-h-[100px]  py-3 hover:scale-105 scale:95 rounded-xl group emerald-border hover:emerald-glow transform transition-transform duration-300 hover:-translate-y-1">
       <div className={!isVisible ? "hidden" : ""}>
         <div className="flex items-center justify-center mb-4">
           <Icon width={48} height={48} />
