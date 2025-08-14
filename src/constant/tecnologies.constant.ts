@@ -11,10 +11,12 @@ import JsSVG from "@/svg/tech/Js.svg";
 import JwtSVG from "@/svg/tech/Jwt.svg";
 import MySQlSVG from "@/svg/tech/MySql.svg";
 import NativewindSVG from "@/svg/tech/Nativewind.svg";
+import NestJsSVG from "@/svg/tech/NestJs.svg";
 import NetlifySVG from "@/svg/tech/Netlify.svg";
 import NextJsSVG from "@/svg/tech/NextJs.svg";
 import NodeJsSVG from "@/svg/tech/NodeJsSVG.svg";
 import PreactSVG from "@/svg/tech/Preact.svg";
+import PrismaSVG from "@/svg/tech/Prisma.svg";
 import PySvg from "@/svg/tech/Py.svg";
 import RailwaySVG from "@/svg/tech/Railway.svg";
 import ReactSVG from "@/svg/tech/React.svg";
@@ -171,6 +173,16 @@ const backendTech: Technologies = [
         name: "FastAPI",
         Icon: FastApiSVG,
         level: 2
+    },
+    {
+        name: "Prisma",
+        Icon: PrismaSVG,
+        level: 3
+    },
+    {
+        name: "NestJS",
+        Icon: NestJsSVG,
+        level: 3
     }
 ]
 
