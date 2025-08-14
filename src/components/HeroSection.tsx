@@ -9,28 +9,16 @@ const TypingEffect = () => {
   const [displayedText, setDisplayedText] = useState(text.charAt(0));
 
   useEffect(() => {
-    let reverse = false
     const timer = setInterval(() => {
-      setDisplayedText(prev => {
-        if (reverse) {
-          const nextText = prev.slice(0, -1);
-          reverse = nextText.length > 1;
-          return nextText;
-        } else {
-          const nextText = prev + text.charAt(prev.length)
-
-          reverse = nextText.length === text.length
-
-          return nextText;
-        }
-      })
+      if (displayedText === text) return clearInterval(timer)
+      setDisplayedText(prev => text.slice(0, prev.length + 1))
     }, 150);
 
     return () => clearInterval(timer)
   }, [])
 
   return (
-    <h1 className="text-5xl select-none  lg:text-7xl font-bold gradient-text">
+    <h1 className="text-5xl select-none text-nowrap lg:text-7xl font-bold gradient-text">
       {displayedText}
     </h1>
   );
