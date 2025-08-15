@@ -53,12 +53,9 @@ function Contacts() {
 function HeroActions() {
   const { translate } = useLanguage()
   const scrollToContact = () => (window.location.href = "#contact");
-  const handleDownloadCV = () => {
-    console.log("Downloading CV...");
-  };
   return (
     <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-up">
-      <a className="group bg-primary text-primary-foreground px-8 py-4 rounded-lg hover:bg-primary/90 transition-all duration-300 flex items-center justify-center gap-2 font-semibold hover-lift" href='/cv.docx' download>
+      <a className="group bg-primary text-primary-foreground px-8 py-4 rounded-lg hover:bg-primary/90 transition-all duration-300 flex items-center justify-center gap-2 font-semibold hover-lift" href='/cv.pdf' download>
         <Download className="w-5 h-5 group-hover:animate-bounce" />
         {translate.hero.downloadCV}
       </a>
