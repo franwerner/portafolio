@@ -83,9 +83,28 @@ const projects: Project[] = [
         color: "from-red-500 to-yellow-600",
         githubUrl: "https://github.com/franwerner/pixelforge-engine",
         period: {
-            start: new Date("02/01/2025"),
+            start: new Date("01/01/2025"),
+            end: new Date("01/02/2025")
         },
         technologies: ["Typescript", "Vite"]
+    }, {
+        title: "Seo Analyzer",
+        description: translate({
+            en: `
+            It’s a tool that replicates the DOM node process, known as the Virtual DOM, leveraging this dynamic to perform analyses based on the type of HTML tag. It also runs analysis flows focused on semantics, structure, spelling, schemas, and external resources (such as links).
+The tool is designed to generate reports, store them, and assign a tracking ID based on specific criteria from the real tag. Then, through the developed browser extension, it can accurately identify where the element with an SEO-related issue is located.
+            `,
+            es: `
+            Es una herramienta que recrea el proceso de los nodos del DOM, conocida como Virtual DOM, aprovechando esta dinámica para realizar análisis según el tipo de etiqueta HTML. Además, ejecuta flujos de análisis enfocados en la semántica, la estructura, la ortografía, los esquemas y los recursos externos (como enlaces).
+La herramienta está orientada a generar reportes, almacenarlos y asignarles un identificador de seguimiento (tracking ID) basado en ciertos criterios de la etiqueta real. Luego, mediante la extensión desarrollada, es posible identificar exactamente dónde se encuentra el elemento que presenta algún tipo de problema de SEO.
+            `
+        }),
+        period: {
+            start: new Date("01/08/2025"),
+        },
+        technologies: ["Typescript", "Vite", "React", "HeroUI", "Tailwindcss", "NextJS", "Express", "NodeJS", "Zod", "OpenAI", "JWT", "CRXJS"],
+        color: "from-blue-500 to-purple-600",
+        githubUrl: "https://github.com/franwerner/seo-analyzer"
     }
 ]
 
